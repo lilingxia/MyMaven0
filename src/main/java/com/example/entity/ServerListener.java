@@ -9,13 +9,17 @@ import javax.servlet.ServletContextListener;
 import org.iq80.leveldb.DB;
 import org.iq80.leveldb.DBFactory;
 import org.iq80.leveldb.Options;
-import org.iq80.leveldb.impl.Iq80DBFactory;  
+import org.iq80.leveldb.impl.Iq80DBFactory;
+import org.omg.CORBA.PUBLIC_MEMBER;  
   
  
   
 public class ServerListener implements ServletContextListener {   
 
-    public static DB db;
+	private static DB db;
+    public static DB getDB(){
+    	return db;
+    }
     public void contextInitialized(ServletContextEvent event)   
     {   
         System.out.println("Server started!");  
@@ -35,7 +39,7 @@ public class ServerListener implements ServletContextListener {
 				e.printStackTrace();
 			}//清除文件夹内的所有文件。
         }
-        Options options = new Options().createIfMissing(true);
+       Options options = new Options().createIfMissing(true);
         //重新open新的db
         /**
          *服务器启动，打开数据库。 
@@ -49,7 +53,6 @@ public class ServerListener implements ServletContextListener {
 		}
 
     }   
-  
     public void contextDestroyed(ServletContextEvent event)   
     {   
         try {

@@ -71,7 +71,7 @@ public class LoginController extends AbstractController
 	String time=df.format(new Date());
 	int count=0;
 
-    DB db=ServerListener.db;
+	DB db=ServerListener.getDB();
     Charset charset = Charset.forName("utf-8");
     //boolean cleanup = false;
 	    //保存相应的参数，通过ModelAndView返回
